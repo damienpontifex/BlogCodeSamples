@@ -1,0 +1,315 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F3FE577619DC10F50073EFA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE577519DC10F50073EFA7 /* AppDelegate.swift */; };
+		F3FE577819DC10F50073EFA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE577719DC10F50073EFA7 /* ViewController.swift */; };
+		F3FE577B19DC10F50073EFA7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3FE577919DC10F50073EFA7 /* Main.storyboard */; };
+		F3FE577D19DC10F50073EFA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3FE577C19DC10F50073EFA7 /* Images.xcassets */; };
+		F3FE578019DC10F50073EFA7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FE577E19DC10F50073EFA7 /* LaunchScreen.xib */; };
+		F3FE579719DC11160073EFA7 /* MultiLineTextInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE579519DC11160073EFA7 /* MultiLineTextInputTableViewCell.swift */; };
+		F3FE579819DC11160073EFA7 /* MultiLineTextInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3FE579619DC11160073EFA7 /* MultiLineTextInputTableViewCell.xib */; };
+		F3FE579A19DC11D90073EFA7 /* UITableViewCellExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FE579919DC11D90073EFA7 /* UITableViewCellExtensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F3FE577019DC10F50073EFA7 /* SelfSizingTextViewTableCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SelfSizingTextViewTableCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3FE577419DC10F50073EFA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3FE577519DC10F50073EFA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F3FE577719DC10F50073EFA7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F3FE577A19DC10F50073EFA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F3FE577C19DC10F50073EFA7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F3FE577F19DC10F50073EFA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		F3FE579519DC11160073EFA7 /* MultiLineTextInputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiLineTextInputTableViewCell.swift; sourceTree = "<group>"; };
+		F3FE579619DC11160073EFA7 /* MultiLineTextInputTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MultiLineTextInputTableViewCell.xib; sourceTree = "<group>"; };
+		F3FE579919DC11D90073EFA7 /* UITableViewCellExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCellExtensions.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F3FE576D19DC10F50073EFA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F3FE576719DC10F50073EFA7 = {
+			isa = PBXGroup;
+			children = (
+				F3FE577219DC10F50073EFA7 /* SelfSizingTextViewTableCell */,
+				F3FE577119DC10F50073EFA7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F3FE577119DC10F50073EFA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F3FE577019DC10F50073EFA7 /* SelfSizingTextViewTableCell.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F3FE577219DC10F50073EFA7 /* SelfSizingTextViewTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				F3FE579B19DC15CC0073EFA7 /* Cell */,
+				F3FE577519DC10F50073EFA7 /* AppDelegate.swift */,
+				F3FE577719DC10F50073EFA7 /* ViewController.swift */,
+				F3FE577919DC10F50073EFA7 /* Main.storyboard */,
+				F3FE577C19DC10F50073EFA7 /* Images.xcassets */,
+				F3FE577E19DC10F50073EFA7 /* LaunchScreen.xib */,
+				F3FE577319DC10F50073EFA7 /* Supporting Files */,
+			);
+			path = SelfSizingTextViewTableCell;
+			sourceTree = "<group>";
+		};
+		F3FE577319DC10F50073EFA7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F3FE577419DC10F50073EFA7 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F3FE579B19DC15CC0073EFA7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				F3FE579519DC11160073EFA7 /* MultiLineTextInputTableViewCell.swift */,
+				F3FE579619DC11160073EFA7 /* MultiLineTextInputTableViewCell.xib */,
+				F3FE579919DC11D90073EFA7 /* UITableViewCellExtensions.swift */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F3FE576F19DC10F50073EFA7 /* SelfSizingTextViewTableCell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3FE578F19DC10F50073EFA7 /* Build configuration list for PBXNativeTarget "SelfSizingTextViewTableCell" */;
+			buildPhases = (
+				F3FE576C19DC10F50073EFA7 /* Sources */,
+				F3FE576D19DC10F50073EFA7 /* Frameworks */,
+				F3FE576E19DC10F50073EFA7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SelfSizingTextViewTableCell;
+			productName = SelfSizingTextViewTableCell;
+			productReference = F3FE577019DC10F50073EFA7 /* SelfSizingTextViewTableCell.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F3FE576819DC10F50073EFA7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Damien Pontifex";
+				TargetAttributes = {
+					F3FE576F19DC10F50073EFA7 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = F3FE576B19DC10F50073EFA7 /* Build configuration list for PBXProject "SelfSizingTextViewTableCell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F3FE576719DC10F50073EFA7;
+			productRefGroup = F3FE577119DC10F50073EFA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F3FE576F19DC10F50073EFA7 /* SelfSizingTextViewTableCell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F3FE576E19DC10F50073EFA7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3FE577B19DC10F50073EFA7 /* Main.storyboard in Resources */,
+				F3FE578019DC10F50073EFA7 /* LaunchScreen.xib in Resources */,
+				F3FE577D19DC10F50073EFA7 /* Images.xcassets in Resources */,
+				F3FE579819DC11160073EFA7 /* MultiLineTextInputTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F3FE576C19DC10F50073EFA7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3FE577819DC10F50073EFA7 /* ViewController.swift in Sources */,
+				F3FE579719DC11160073EFA7 /* MultiLineTextInputTableViewCell.swift in Sources */,
+				F3FE577619DC10F50073EFA7 /* AppDelegate.swift in Sources */,
+				F3FE579A19DC11D90073EFA7 /* UITableViewCellExtensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F3FE577919DC10F50073EFA7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3FE577A19DC10F50073EFA7 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F3FE577E19DC10F50073EFA7 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3FE577F19DC10F50073EFA7 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F3FE578D19DC10F50073EFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F3FE578E19DC10F50073EFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3FE579019DC10F50073EFA7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SelfSizingTextViewTableCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F3FE579119DC10F50073EFA7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SelfSizingTextViewTableCell/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F3FE576B19DC10F50073EFA7 /* Build configuration list for PBXProject "SelfSizingTextViewTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3FE578D19DC10F50073EFA7 /* Debug */,
+				F3FE578E19DC10F50073EFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3FE578F19DC10F50073EFA7 /* Build configuration list for PBXNativeTarget "SelfSizingTextViewTableCell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3FE579019DC10F50073EFA7 /* Debug */,
+				F3FE579119DC10F50073EFA7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F3FE576819DC10F50073EFA7 /* Project object */;
+}
