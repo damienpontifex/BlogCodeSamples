@@ -13,7 +13,7 @@ class ViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		tableView.registerNib(UINib(nibName: "MultiLineTextInputTableViewCell", bundle: nil)!, forCellReuseIdentifier: "MultiLineTextInputTableViewCell")
+		tableView.registerNib(UINib(nibName: "MultiLineTextInputTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiLineTextInputTableViewCell")
 		
 		tableView.rowHeight = UITableViewAutomaticDimension
 		tableView.estimatedRowHeight = 44.0
