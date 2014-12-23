@@ -39,8 +39,6 @@ class MultiLineTextInputTableViewCell: UITableViewCell {
 		// Disable scrolling inside the text view so we enlarge to fitted size
         textView.scrollEnabled = false
         textView.delegate = self
-		
-		textView.textContainer.widthTracksTextView = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -56,17 +54,6 @@ class MultiLineTextInputTableViewCell: UITableViewCell {
 
 extension MultiLineTextInputTableViewCell: UITextViewDelegate {
     func textViewDidChange(textView: UITextView!) {
-		
-		var bounds = textView.bounds
-		
-		let maxSize = CGSize(width: bounds.size.width, height: CGFloat(MAXFLOAT))
-		var newSize = textView.sizeThatFits(maxSize)
-		
-		// Minimum size is 50
-		newSize.height = max(50.0, newSize.height)
-		
-		bounds.size = newSize
-		textView.bounds = bounds
 		
 		// Only way found to make table view update layout of cell
 		// More efficient way?
