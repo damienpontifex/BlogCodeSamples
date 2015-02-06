@@ -10,8 +10,8 @@ import UIKit
 
 class MultiLineTextInputTableViewCell: UITableViewCell {
 	
-	@IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet var textView: UITextView!
+	@IBOutlet weak var titleLabel: UILabel?
+    @IBOutlet var textView: UITextView?
 	
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -24,10 +24,10 @@ class MultiLineTextInputTableViewCell: UITableViewCell {
 	/// Custom setter so we can initialise the height of the text view
 	var textString: String {
 		get {
-			return textView.text
+			return textView?.text ?? ""
 		}
 		set {
-			textView.text = newValue
+			textView?.text = newValue
 			
 			textViewDidChange(textView)
 		}
@@ -37,17 +37,17 @@ class MultiLineTextInputTableViewCell: UITableViewCell {
         super.awakeFromNib()
 		
 		// Disable scrolling inside the text view so we enlarge to fitted size
-        textView.scrollEnabled = false
-        textView.delegate = self
+        textView?.scrollEnabled = false
+        textView?.delegate = self
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         if selected {
-            textView.becomeFirstResponder()
+            textView?.becomeFirstResponder()
         } else {
-            textView.resignFirstResponder()
+            textView?.resignFirstResponder()
         }
     }
 }
