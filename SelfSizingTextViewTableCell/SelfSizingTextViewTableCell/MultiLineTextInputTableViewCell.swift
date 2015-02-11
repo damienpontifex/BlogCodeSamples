@@ -57,9 +57,8 @@ extension MultiLineTextInputTableViewCell: UITextViewDelegate {
 		
 		// Only way found to make table view update layout of cell
 		// More efficient way?
-		if let tableView = tableView {
-			tableView.beginUpdates()
-			tableView.endUpdates()
-		}
+		
+		tableView?.beginUpdates()
+		tableView?.endUpdates()
     }
 }
