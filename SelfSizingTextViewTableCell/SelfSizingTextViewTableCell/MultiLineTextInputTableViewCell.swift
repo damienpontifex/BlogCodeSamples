@@ -55,10 +55,19 @@ class MultiLineTextInputTableViewCell: UITableViewCell {
 extension MultiLineTextInputTableViewCell: UITextViewDelegate {
     func textViewDidChange(textView: UITextView!) {
 		
-		// Only way found to make table view update layout of cell
-		// More efficient way?
+		let size = textView.bounds.size
+		let newSize = textView.sizeThatFits(CGSize(width: size.width, height: CGFloat.max))
 		
-		tableView?.beginUpdates()
-		tableView?.endUpdates()
+		// Resize the cell only when cell's size is changed
+		if size.height != newSize.height {
+			UIView.setAnimationsEnabled(false)
+			tableView?.beginUpdates()
+			tableView?.endUpdates()
+			UIView.setAnimationsEnabled(true)
+			
+			if let thisIndexPath = tableView?.indexPathForCell(self) {
+				tableView?.scrollToRowAtIndexPath(thisIndexPath, atScrollPosition: .Bottom, animated: false)
+			}
+		}
     }
 }
