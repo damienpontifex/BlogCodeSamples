@@ -1,0 +1,1 @@
+Supporting code for post at https://pontifex.azurewebsites.net/my-typescript-project-structure-with-gulp/
