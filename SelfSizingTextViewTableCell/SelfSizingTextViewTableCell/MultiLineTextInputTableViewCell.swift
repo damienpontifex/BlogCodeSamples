@@ -3,7 +3,7 @@
 //  ER Pro
 //
 //  Created by Damien Pontifex on 7/08/2014.
-//  Copyright (c) 2014 Evoque Rehab. All rights reserved.
+//  Copyright (c) 2014 Damien Pontifex. All rights reserved.
 //
 
 import UIKit
