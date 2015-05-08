@@ -2,20 +2,27 @@ var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var nodemon = require('gulp-nodemon');
 
+var config = {
+    tsFiles: ['src/**/*.ts'],
+};
+
 gulp.task('default', ['ts', 'watch']);
 
 // Compile typescript sources
 gulp.task('ts', function() {  
-    gulp.src(['src/**/*.ts'])
-        .pipe(ts({module: 'commonjs'}))
+    gulp.src(config.tsFiles)
+        .pipe(ts({
+            module: 'commonjs',
+            target: 'ES5'
+         }))
         .js
         .pipe(gulp.dest('./wwwroot'));
 });
 
-gulp.task('watch', function() {  
-    gulp.watch('./src/**/*.ts', ['ts']);
+gulp.task('watch', ['ts'], function() {  
+    gulp.watch(config.tsFiles, ['ts']);
 });
 
-gulp.task('nodemon', ['ts', 'watch'], function() {  
-    nodemon({script: './wwwroot/app.js'});
+gulp.task('nodemon', ['watch'], function() {  
+    nodemon({script: 'wwwroot/app.js'});
 });
