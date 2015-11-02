@@ -14,9 +14,6 @@ class ViewController: UITableViewController {
 		super.viewDidLoad()
 		
 		tableView.registerNib(UINib(nibName: "MultiLineTextInputTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiLineTextInputTableViewCell")
-		
-		tableView.rowHeight = UITableViewAutomaticDimension
-		tableView.estimatedRowHeight = 44.0
 	}
 }
 
@@ -31,5 +28,13 @@ extension ViewController {
 		cell.titleLabel?.text = "Multi line cell"
 		cell.textString = "Test String\nAnd another string\nAnd another"
 		return cell
+	}
+	
+	override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 44.0
+	}
+	
+	override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return UITableViewAutomaticDimension
 	}
 }
