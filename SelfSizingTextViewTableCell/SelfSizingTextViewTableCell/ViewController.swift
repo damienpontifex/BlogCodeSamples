@@ -20,13 +20,14 @@ class ViewController: UITableViewController {
 	}
 }
 
-extension ViewController: UITableViewDataSource {
+//MARK: - UITableViewDataSource
+extension ViewController {
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return 1
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("MultiLineTextInputTableViewCell", forIndexPath: indexPath) as MultiLineTextInputTableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier("MultiLineTextInputTableViewCell", forIndexPath: indexPath) as! MultiLineTextInputTableViewCell
 		cell.titleLabel?.text = "Multi line cell"
 		cell.textString = "Test String\nAnd another string\nAnd another"
 		return cell
