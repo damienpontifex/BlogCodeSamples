@@ -1,0 +1,36 @@
+{
+    "version": "1.0.0-*",
+    "description": "WebRequest Console Application",
+    "authors": [
+        ""
+    ],
+    "tags": [
+        ""
+    ],
+    "projectUrl": "",
+    "licenseUrl": "",
+    "compilationOptions": {
+        "emitEntryPoint": true
+    },
+    "tooling": {
+        "defaultNamespace": "WebRequest"
+    },
+    "dependencies": {
+        "System.Net.Http": "4.0.1-beta-23516",
+        "Newtonsoft.Json": "8.0.2"
+    },
+    "commands": {
+        "WebRequest": "run"
+    },
+    "frameworks": {
+        "dnx451": {},
+        "dnxcore50": {
+            "dependencies": {
+                "System.Collections": "4.0.11-beta-23516",
+                "System.Console": "4.0.0-beta-23516",
+                "System.Linq": "4.0.1-beta-23516",
+                "System.Threading": "4.0.11-beta-23516"
+            }
+        }
+    }
+}

@@ -1,3 +1,4 @@
 .DS_Store
 profile
 xcuserdata
+*.lock.json
