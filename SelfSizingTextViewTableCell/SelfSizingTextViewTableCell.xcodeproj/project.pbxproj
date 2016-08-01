@@ -122,6 +122,8 @@
 				TargetAttributes = {
 					F3FE576F19DC10F50073EFA7 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = L3LZ87B268;
+						DevelopmentTeamName = "Damien Pontifex (Personal Team)";
 						LastSwiftMigration = 0800;
 					};
 				};

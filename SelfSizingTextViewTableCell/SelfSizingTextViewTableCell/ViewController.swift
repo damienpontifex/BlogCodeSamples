@@ -14,7 +14,7 @@ class ViewController: UITableViewController {
 		super.viewDidLoad()
 		
 		tableView.register(UINib(nibName: "MultiLineTextInputTableViewCell", bundle: nil), forCellReuseIdentifier: "MultiLineTextInputTableViewCell")
-        
+        tableView.keyboardDismissMode = .onDrag
 	}
 }
 
