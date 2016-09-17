@@ -1,0 +1,4 @@
+[submodule "ArduinoAvrCmake/utils/cmake-avr"]
+	path = ArduinoAvrCmake/utils/cmake-avr
+	url = https://github.com/mkleemann/cmake-avr.git
+	branch = master
