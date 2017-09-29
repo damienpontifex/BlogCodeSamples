@@ -8,7 +8,6 @@ def cnn_model_fn(features, labels, mode, params):
     """Model function for CNN."""
 
     is_training = mode == tf.estimator.ModeKeys.TRAIN
-    dropout_rate = params.dropout_rate if is_training else 0
     
     with tf.name_scope('Input'):
         # Input Layer
@@ -45,7 +44,7 @@ def cnn_model_fn(features, labels, mode, params):
         # pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
         pool2_flat = tf.contrib.layers.flatten(pool2)
         dense = tf.layers.dense(inputs=pool2_flat, units=1_024, activation=tf.nn.relu, trainable=is_training)
-        dropout = tf.layers.dropout(inputs=dense, rate=dropout_rate, training=is_training)
+        dropout = tf.layers.dropout(inputs=dense, rate=params.dropout_rate, training=is_training)
 
     with tf.name_scope('Predictions'):
         # Logits Layer
