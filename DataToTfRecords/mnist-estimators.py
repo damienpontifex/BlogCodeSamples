@@ -13,6 +13,7 @@ def cnn_model_fn(features, labels, mode, params):
     with tf.name_scope('Input'):
         # Input Layer
         input_layer = tf.reshape(features, [-1, 28, 28, 1], name='input_reshape')
+        tf.summary.image('input', input_layer)
 
     with tf.name_scope('Conv_1'):
         # Convolutional Layer #1
@@ -41,33 +42,29 @@ def cnn_model_fn(features, labels, mode, params):
 
     with tf.name_scope('Dense_Dropout'):
         # Dense Layer
-        pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
-#         pool2_flat = tf.contrib.layers.flatten(pool2)
+        # pool2_flat = tf.reshape(pool2, [-1, 7 * 7 * 64])
+        pool2_flat = tf.contrib.layers.flatten(pool2)
         dense = tf.layers.dense(inputs=pool2_flat, units=1_024, activation=tf.nn.relu, trainable=is_training)
         dropout = tf.layers.dropout(inputs=dense, rate=dropout_rate, training=is_training)
 
     with tf.name_scope('Predictions'):
         # Logits Layer
         logits = tf.layers.dense(inputs=dropout, units=10, trainable=is_training)
+        predicted_logit = tf.cast(tf.argmax(input=logits, axis=1), tf.int32)
 
     loss = None
     train_op = None
+    eval_metric = None
 
     # Calculate Loss if not predicting (for both TRAIN and EVAL modes)
     if mode != tf.estimator.ModeKeys.PREDICT:
         onehot_labels = tf.one_hot(indices=labels, depth=10)
         loss = tf.losses.softmax_cross_entropy(onehot_labels=onehot_labels, logits=logits)
-        
-        correct_prediction = tf.equal(labels, tf.cast(tf.argmax(logits, 1), tf.int32))
-        accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32), name='accuracy')
-        
-        if mode == tf.estimator.ModeKeys.TRAIN:
-            tf.summary.scalar('loss', loss)
-            tf.summary.scalar('accuracy', accuracy)
-        else:
-            tf.summary.scalar('validation_loss', loss)
-            tf.summary.scalar('validation_accuracy', accuracy)
 
+        eval_metric = {
+            'accuracy': tf.contrib.metrics.streaming_accuracy(labels, tf.argmax(logits, 1))
+        }
+        
     # Configure the Training Op (for TRAIN mode)
     if mode == tf.estimator.ModeKeys.TRAIN:
         train_op = tf.contrib.layers.optimize_loss(
@@ -78,16 +75,14 @@ def cnn_model_fn(features, labels, mode, params):
 
     # Generate Predictions
     predictions = {
-      'classes': tf.argmax(input=logits, axis=1),
+      'classes': predicted_logit,
       'probabilities': tf.nn.softmax(logits, name='softmax_tensor')
-    }
-    
-    eval_metric = {
-        'accuracy': tf.contrib.metrics.streaming_accuracy(labels, tf.argmax(logits, 1))
     }
 
     export_outputs = {
-        'prediction': tf.estimator.export.ClassificationOutput(scores=tf.nn.softmax(logits))
+        'prediction': tf.estimator.export.ClassificationOutput(
+            scores=tf.nn.softmax(logits),
+            classes=tf.cast(predicted_logit, tf.string))
     }
 
     return tf.estimator.EstimatorSpec(mode=mode,
