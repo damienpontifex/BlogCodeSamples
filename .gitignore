@@ -3,4 +3,6 @@ profile
 xcuserdata
 *.lock.json
 .build
+build
 *.db*
+Package.resolved
