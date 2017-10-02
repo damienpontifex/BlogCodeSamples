@@ -1,12 +1,11 @@
-#! /usr/env/bin python3
+#!/usr/bin/env python3
 
+from argparse import ArgumentParser
 import os
 import glob
 import tensorflow as tf
 
-def cnn_model_fn(features, labels, mode, params):
-    """Model function for CNN."""
-
+def mnist_model(features, mode, params):
     is_training = mode == tf.estimator.ModeKeys.TRAIN
     
     with tf.name_scope('Input'):
@@ -49,47 +48,55 @@ def cnn_model_fn(features, labels, mode, params):
     with tf.name_scope('Predictions'):
         # Logits Layer
         logits = tf.layers.dense(inputs=dropout, units=10, trainable=is_training)
-        predicted_logit = tf.cast(tf.argmax(input=logits, axis=1), tf.int32)
 
-    loss = None
-    train_op = None
-    eval_metric = None
+        return logits
 
-    # Calculate Loss if not predicting (for both TRAIN and EVAL modes)
-    if mode != tf.estimator.ModeKeys.PREDICT:
-        onehot_labels = tf.one_hot(indices=labels, depth=10)
-        loss = tf.losses.softmax_cross_entropy(onehot_labels=onehot_labels, logits=logits)
+def cnn_model_fn(features, labels, mode, params):
+    """Model function for CNN."""
 
-        eval_metric = {
-            'accuracy': tf.contrib.metrics.streaming_accuracy(labels, tf.argmax(logits, 1))
-        }
-        
-    # Configure the Training Op (for TRAIN mode)
-    if mode == tf.estimator.ModeKeys.TRAIN:
-        train_op = tf.contrib.layers.optimize_loss(
-            loss=loss,
-            global_step=tf.contrib.framework.get_global_step(),
-            learning_rate=params.learning_rate,
-            optimizer='Adam')    
-
+    logits = mnist_model(features, mode, params)
+    predicted_logit = tf.argmax(input=logits, axis=1, output_type=tf.int32)
+    scores = tf.nn.softmax(logits, name='softmax_tensor')
     # Generate Predictions
     predictions = {
       'classes': predicted_logit,
-      'probabilities': tf.nn.softmax(logits, name='softmax_tensor')
+      'probabilities': scores
     }
 
     export_outputs = {
         'prediction': tf.estimator.export.ClassificationOutput(
-            scores=tf.nn.softmax(logits),
+            scores=scores,
             classes=tf.cast(predicted_logit, tf.string))
     }
 
-    return tf.estimator.EstimatorSpec(mode=mode,
-                                     loss=loss,
-                                     train_op=train_op,
-                                     eval_metric_ops=eval_metric,
-                                     predictions=predictions,
-                                     export_outputs=export_outputs)
+    # PREDICT
+    if mode == tf.estimator.ModeKeys.PREDICT:
+        return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions, export_outputs=export_outputs)
+
+    # TRAIN and EVAL
+    loss = tf.losses.softmax_cross_entropy(onehot_labels=labels, logits=logits)
+
+    accuracy = tf.metrics.accuracy(tf.argmax(labels, axis=1), predicted_logit)
+    eval_metric = { 'accuracy': accuracy }
+
+    # Configure the Training Op (for TRAIN mode)
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        tf.summary.scalar('accuracy', accuracy[0])
+        train_op = tf.contrib.layers.optimize_loss(
+            loss=loss,
+            global_step=tf.contrib.framework.get_global_step(),
+            learning_rate=params.learning_rate,
+            optimizer='Adam')
+    else:
+        train_op = None
+
+    return tf.estimator.EstimatorSpec(
+        mode=mode,
+        loss=loss,
+        train_op=train_op,
+        eval_metric_ops=eval_metric,
+        predictions=predictions,
+        export_outputs=export_outputs)
 
 def data_input_fn(filenames, batch_size=1000, shuffle=False):
     
@@ -103,7 +110,7 @@ def data_input_fn(filenames, batch_size=1000, shuffle=False):
 
         label = tf.cast(parsed_record['label'], tf.int32)
 
-        return image, label
+        return image, tf.one_hot(label, depth=10)
         
     def _input_fn():
         dataset = (tf.contrib.data.TFRecordDataset(filenames)
@@ -119,21 +126,33 @@ def data_input_fn(filenames, batch_size=1000, shuffle=False):
         
         return features, labels
     return _input_fn
-    
 
 if __name__ == '__main__':
+
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--data-directory",
+        default='~/data/mnist',
+        help='Directory where TFRecords are stored'
+    )
+    parser.add_argument(
+        '--model-directory',
+        default='/tmp/mnisttraining',
+        help='Directory where model summaries and checkpoints are stored'
+    )
+    args = parser.parse_args()
 
     tf.logging.set_verbosity(tf.logging.INFO)
 
     run_config = tf.contrib.learn.RunConfig(
-        model_dir='/tmp/mnisttraining', 
+        model_dir=args.model_directory, 
         save_checkpoints_steps=20, 
         save_summary_steps=20)
 
     hparams = tf.contrib.training.HParams(
-        learning_rate=0.001, 
+        learning_rate=1e-3, 
         dropout_rate=0.4,
-        data_directory=os.path.expanduser('~/data/mnist'))
+        data_directory=os.path.expanduser(args.data_directory))
 
     mnist_classifier = tf.estimator.Estimator(
         model_fn=cnn_model_fn, 
@@ -154,3 +173,9 @@ if __name__ == '__main__':
     )
 
     experiment.train_and_evaluate()
+
+    # Export for serving
+    # mnist_classifier.export_savedmodel(
+    #     os.path.join(hparams.data_directory, 'serving'), 
+    #     serving_input_receiver_fn
+    # )
