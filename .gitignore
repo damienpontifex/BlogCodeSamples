@@ -6,3 +6,4 @@ xcuserdata
 build
 *.db*
 Package.resolved
+*.ipynb_checkpoints*
