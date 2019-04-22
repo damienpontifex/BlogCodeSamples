@@ -1,0 +1,7 @@
+#!/bin/bash
+
+dotnet publish -c Release -o ~/Desktop/publish
+
+zip -j -r archive.zip /Users/ponti/Desktop/publish/*
+
+az webapp deployment source config-zip -g tf-az-roles-rg -n tf-az-roles-app-service --src archive.zip
