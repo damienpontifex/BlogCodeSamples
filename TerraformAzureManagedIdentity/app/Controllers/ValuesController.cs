@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Services.AppAuthentication;
-using Microsoft.WindowsAzure.Storage.Auth;
-using Microsoft.WindowsAzure.Storage.Blob;
+using Azure.Identity;
+using Azure.Storage.Blobs;
 
 namespace app.Controllers
 {
@@ -16,25 +16,17 @@ namespace app.Controllers
 
         // GET api/values
         [HttpGet]
-        public async Task<ActionResult<string>> Get()
+        public async Task<string> Get(CancellationToken cancellationToken)
         {
-            var accessToken = await GetStorageAccessTokenAsync();
-            var credential = new TokenCredential(accessToken);
+            var credential = new DefaultAzureCredential();
+            var blob = new BlobClient(BlobUri, credential);
+            var content = (await blob.DownloadAsync(cancellationToken)).Value.Content;
 
-            var storageCredentials = new StorageCredentials(credential);
-            var blob = new CloudBlockBlob(BlobUri, storageCredentials);
-
-            using (var reader = new StreamReader(await blob.OpenReadAsync()))
+            using (var reader = new StreamReader(content))
             {
                 var contents = await reader.ReadToEndAsync();
                 return contents;
             }
-        }
-
-        private Task<string> GetStorageAccessTokenAsync()
-        {
-            var azureServiceTokenProvider = new AzureServiceTokenProvider();
-            return azureServiceTokenProvider.GetAccessTokenAsync(resource: "https://storage.azure.com/");
         }
     }
 }
