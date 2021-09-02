@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.9" NoWarn="NU1605" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.9" NoWarn="NU1605" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
+  </ItemGroup>
+
+  <Target Name="Generate OpenAPI Specification Document" AfterTargets="Build">
+    <Exec Command="dotnet swagger tofile --serializeasv2 --output $(OutputPath)$(AssemblyName).json $(OutputPath)$(AssemblyName).dll v1" ContinueOnError="true" />
+  </Target>
+
+</Project>
